@@ -17,14 +17,14 @@ class CreateReplyModelsTable extends Migration
             $table->id();
             $table->text('body');
 
-            $table->integer('question_id')->unsigned();
+            $table->bigInteger('question_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
             $table->foreign('question_id')->references('id')->on('questions')
             ->onDelete('cascade');
 
-            $table->timestamps('created_at')->useCurrent();
-            $table->timestamps('updated_at')->useCurrent();$table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

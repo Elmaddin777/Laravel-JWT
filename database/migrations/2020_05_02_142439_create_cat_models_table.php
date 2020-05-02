@@ -13,12 +13,13 @@ class CreateCatModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_models', function (Blueprint $table) {
+        Schema::create('cats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->timestamps('created_at')->useCurrent();
-            $table->timestamps('updated_at')->useCurrent();
+           
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

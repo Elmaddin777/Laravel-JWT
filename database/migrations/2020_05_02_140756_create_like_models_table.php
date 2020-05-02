@@ -15,11 +15,12 @@ class CreateLikeModelsTable extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
+         
             $table->integer('reply_id')->unsigned();
             $table->integer('user_id')->unsigned();
            
-            $table->timestamps('created_at')->useCurrent();
-            $table->timestamps('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
