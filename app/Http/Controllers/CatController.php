@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CatModel;
+use App\Models\CatModel as Cat;
 use Illuminate\Http\Request;
+use App\Http\Resources\CatResource;
 
 class CatController extends Controller
 {
@@ -13,8 +14,9 @@ class CatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $cats = Cat::latest()->get();
+        return CatResource::collection($cats);
     }
 
     /**
@@ -35,18 +37,32 @@ class CatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        $cat = new Cat;
+        $cat->name = $request->name;
+        $cat->slug = str_slug($cat->name);
+        $cat->save();
+
+        return new CatResource($cat);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CatModel  $catModel
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(CatModel $catModel)
+    public function show($slug)
     {
-        //
+        $cat = Cat::whereSlug($slug)->first();
+        if (is_null($cat)) {
+            return response()->json(['message' => 'Record not found!'], 404);
+        }
+
+        return new CatResource($cat);
     }
 
     /**
@@ -64,22 +80,41 @@ class CatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CatModel  $catModel
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CatModel $catModel)
+    public function update(Request $request, $slug)
     {
-        //
+        $cat = Cat::whereSlug($slug)->first();
+        if (is_null($cat)) {
+            return response()->json(['message' => 'Record not found!'], 404);
+        }
+
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        $cat->name = $request->name;
+        $cat->slug = str_slug($cat->name);
+        $cat->save();
+
+        return new CatResource($cat);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CatModel  $catModel
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CatModel $catModel)
+    public function destroy($slug)
     {
-        //
+        $cat = Cat::whereSlug($slug)->first();
+        if (is_null($cat)) {
+            return response()->json(['message' => 'Record not found!'], 404);
+        }
+
+        $cat->delete();
+        return response()->json(null, 204);
     }
 }

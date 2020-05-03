@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CatModel extends Model
 {
     protected $table = 'cats';
+
+    protected $fillable = [
+        'name', 'slug'
+    ];
 }

@@ -46,7 +46,8 @@ class QuestionController extends Controller
             'cat_id' => 'required',
             'user_id' => 'required',
         ];
-
+        
+        $request->slug = str_slug($request->name); 
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
