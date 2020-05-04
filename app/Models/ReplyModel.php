@@ -8,6 +8,10 @@ class ReplyModel extends Model
 {
     protected $table = 'replies';
 
+    protected $fillable = [
+        'body', 'question_id', 'user_id'
+    ];
+
     public function getLike(){
         return $this->hasMany('App\Models\LikeModel', 'reply_id', 'id');
     }

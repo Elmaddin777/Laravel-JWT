@@ -17,7 +17,7 @@ class QuestionModel extends Model
     }
 
     public function getReply(){
-        return $this->hasMany('App\Models\ReplyModel', 'reply_id', 'id');
+        return $this->hasMany('App\Models\ReplyModel', 'question_id', 'id');
     }
 
     public function getCat(){
