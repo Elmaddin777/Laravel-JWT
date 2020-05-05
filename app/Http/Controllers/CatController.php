@@ -8,11 +8,16 @@ use App\Http\Resources\CatResource;
 
 class CatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {   
         $cats = Cat::latest()->get();
