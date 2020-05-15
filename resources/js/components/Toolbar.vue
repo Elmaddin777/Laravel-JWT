@@ -1,17 +1,27 @@
 <template>
   <v-card
-    color="grey lighten-4"
+    color="grey lighten-2"
     flat
-    height="200px"
     tile
   >
-    <v-toolbar color="orange">
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-toolbar-title>Title</v-toolbar-title>   
+    <v-toolbar color="">
+        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+        <v-toolbar-title>Forum</v-toolbar-title>   
         <v-spacer></v-spacer>
-        <v-btn text>Forum</v-btn>
-        <v-btn text>Ask Question</v-btn>
-        <v-btn text>Category</v-btn>
+       
+        <router-link :to="{ name: '', params: { }}">
+          <v-btn text>Forum</v-btn>
+        </router-link>
+        <router-link :to="{ name: '', params: { }}">
+         <v-btn text>Ask Question</v-btn>
+        </router-link>
+        <router-link :to="{ name: '', params: { }}">
+          <v-btn text>Category</v-btn>
+        </router-link>
+        <router-link :to="{ name: 'login', params: { }}">
+          <v-btn text>Login</v-btn>
+        </router-link>
+
     </v-toolbar>
   
   </v-card>
@@ -22,6 +32,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  a {
+    text-decoration: none !important;
+  }
 </style>
