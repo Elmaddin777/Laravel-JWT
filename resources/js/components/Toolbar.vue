@@ -6,7 +6,11 @@
   >
     <v-toolbar color="">
         <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-        <v-toolbar-title>Forum</v-toolbar-title>   
+        <v-toolbar-title>
+          <router-link :to="{name: '', params: {} }" class="home-link">
+            techForum
+          </router-link>    
+        </v-toolbar-title>   
         <v-spacer></v-spacer>
        
         <router-link :to="{ name: '', params: { }}">
@@ -35,5 +39,9 @@ export default {
 <style scoped>
   a {
     text-decoration: none !important;
+  }
+  .home-link{
+    color: #2B81D6;
+    font-weight: bold;
   }
 </style>

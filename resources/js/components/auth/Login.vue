@@ -46,23 +46,12 @@ export default {
   },
   methods: {
       signin(){
-        console.log(this.form.email);
-        console.log(this.form.password);
-        
-        
-         axios
-            .post('api/auth/login', this.form)
-            .then(response => console.log(response))
-            .catch(error => {
-                this.form.errored = true
-                console.log(error);
-            })
-          
-          
+         User.login(this.form)
       }
   }
 }
 </script>
+
 
 <style>
 .login-form{

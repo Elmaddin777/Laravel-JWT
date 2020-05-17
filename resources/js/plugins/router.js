@@ -3,9 +3,15 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 // Define routes
-import Login from '../js/components/auth/Login'
+import Login from '../components/auth/Login'
+import AppHome from '../components/AppHome'
 
 const routes = [
+    // {
+        // path: '/',
+        // name: 'home',
+        // component: AppHome
+    // },
      {
          path: '/login',
          name: 'login',
