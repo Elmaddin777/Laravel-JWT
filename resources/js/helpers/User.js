@@ -1,6 +1,7 @@
+import router from "../plugins/router";
+
 class User{
     login(form){
-
         axios
             .post('api/auth/login', form)
             .then(response => this.responseAfterLogin(response))
@@ -13,12 +14,15 @@ class User{
     responseAfterLogin(response){
         const user = response.data.user
         const token = response.data.access_token
-
-        if (Token.isValid(token)) {            
+        console.log(Token.isValid(token));
+        
+        if (Token.isValid(token)) {             
             Storage.store(user, token)
+            window.location = '/forum'
         }
     }
 
+    
     hasToken(){
         const token = Storage.getToken()
 
@@ -35,6 +39,7 @@ class User{
 
     logout(){
         Storage.clear()
+        window.location = '/forum'
     }
 
     getName(){

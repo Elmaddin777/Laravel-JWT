@@ -15,6 +15,11 @@ window.Token = Token
 import User from "./helpers/User"
 window.User = User
 
+console.log(User.loggedIn())
+
+// Create EventBus globally
+window.EventBus = new Vue()
+
 
 
 Vue.component('app-home', require('./components/AppHome.vue').default);

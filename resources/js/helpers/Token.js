@@ -1,9 +1,9 @@
 class Token{
     isValid(token){
         const payload = this.getPayload(token)
-
+       
         if (payload) {
-           return payload.iss == 'https://lararealtime/api/auth/login' ? true : false
+            return payload.iss == 'https://lararealtime/api/auth/login' || 'https://lararealtime/api/auth/register'  ? true : false
         }
 
         return false

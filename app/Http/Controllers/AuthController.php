@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -35,13 +36,7 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function signup(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'email|required',
-            'password' => 'required',
-        ]);
-        
+    public function signup(SignupRequest $request){
         // Register
         $newUser = new User;
         $newUser->name = $request->name;

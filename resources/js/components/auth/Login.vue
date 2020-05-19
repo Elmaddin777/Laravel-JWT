@@ -18,11 +18,16 @@
             <v-checkbox class="form-checkbox"
                 label="Do you agree?"
             ></v-checkbox>
+            
+            <router-link :to="{ name: 'register', params: { }}"  class="login-button mb-5">
+                 <v-btn outlined color="primary">sign up</v-btn>
+            </router-link>
+           
             <v-btn 
-                class="login-button mb-5" 
+                @click.prevent = "signin()"
+                class="register-button mb-5" 
                 type="submit"
                 color="primary"
-                @click.prevent = "signin()"
             >sign in</v-btn>
             
         </form>
@@ -44,9 +49,15 @@ export default {
           errored: false
       }
   },
+  created(){
+      if (User.loggedIn()) {
+          this.$router.push({name: 'forum'})
+      }
+  },
   methods: {
       signin(){
-         User.login(this.form)
+        User.login(this.form)
+        this.$router.push({name: 'forum'})
       }
   }
 }
@@ -58,6 +69,9 @@ export default {
     margin: 0 auto !important;
 }
 .login-button{
+    float:left ;
+}
+.register-button{
     float: right;
 }
 </style>
